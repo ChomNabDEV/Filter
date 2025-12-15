@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: kantumruy pro;
+        padding: 15px;
+      }
+      .btn_Container {
+        width: 100%;
+        border-radius: 12px;
+        background-color: aquamarine;
+        padding: 10px;
+        margin-top: 10px;
+      }
+      button {
+        padding: 10px;
+        border-radius: 8px;
+        border: 0.1px solid gray;
+        font-weight: bold;
+        cursor: pointer;
+        background-color: transparent;
+        color: rgb(0, 0, 0);
+        font-family: kantumruy pro;
+      }
+      button.Active {
+        background-color: black;
+        color: white;
+      }
+      .Categories {
+        width: 100%;
+        height: auto;
+        border: 0.1px solid gray;
+        border-radius: 8px;
+        margin-top: 10px;
+        padding: 10px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .box {
+        width: 100px;
+        padding: 10px 5px;
+        border: 0.1px solid orangered;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .match {
+        background-color: orangered;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Click categories to filter box.</h2>
+    <div class="btn_Container">
+      <button type="button" data-filter="all" class="Active">
+        បង្ហាញទាំងអស់
+      </button>
+      <button type="button" data-filter="snack">នំ</button>
+      <button type="button" data-filter="veget">បន្លែ</button>
+      <button type="button" data-filter="book">សៀវភៅ</button>
+      <button type="button" data-filter="bag">កាបូប</button>
+    </div>
+    <div class="Categories">
+      <div class="box" data-type="snack">អំបុក</div>
+      <div class="box" data-type="veget">ក្រូចឆ្មា</div>
+      <div class="box" data-type="snack">នំ ៩០០</div>
+      <div class="box" data-type="book">ចិត្តវិទ្យា</div>
+      <div class="box" data-type="bag">កាបូបលុយ</div>
+      <div class="box" data-type="veget">ផ្សិតម្ជុល</div>
+      <div class="box" data-type="book">ឲ</div>
+      <div class="box" data-type="bag">កាបូបរៀន</div>
+      <div class="box" data-type="bag">ការតាបស្ពាយ</div>
+      <div class="box" data-type="book">បដិវត្តន៍</div>
+      <div class="box" data-type="veget">ស្ពៃក្តោប</div>
+      <div class="box" data-type="snack">នំពុម្ភ</div>
+    </div>
+    <script>
+      // Query data
+      const BTN = document.querySelectorAll(".btn_Container button");
+      const BOX = document.querySelectorAll(".box");
+
+      BTN.forEach((btn) => {
+        btn.addEventListener("click", (event) => {
+          BTN.forEach((button) => button.classList.remove("Active"));
+          event.target.classList.add("Active");
+          const filter = event.target.dataset.filter;
+          BOX.forEach((box) => {
+            if (filter === "all" || box.dataset.type === filter) {
+              box.classList.add("match");
+            } else {
+              box.classList.remove("match");
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
